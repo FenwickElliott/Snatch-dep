@@ -3,13 +3,9 @@ class SnatchController < ApplicationController
   end
 
   def snatch
-    render text: request.env['omniauth.auth'].to_yaml
+    @response = request.env['omniauth.auth']
   end
 
   def about
-  end
-
-  def create
-    render text: request.env['omniauth.auth'].to_yaml
   end
 end
