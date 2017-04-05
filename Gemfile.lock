@@ -106,8 +106,8 @@ GEM
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-    omniauth-spotify (0.0.13)
-      omniauth-oauth2 (~> 1.1)
+    omniauth-spotify-oauth2 (1.0.1)
+      omniauth-oauth2 (~> 1.4)
     pg (0.20.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -212,7 +212,7 @@ DEPENDENCIES
   faker
   jquery-rails
   listen
-  omniauth-spotify
+  omniauth-spotify-oauth2
   pg
   pry-rails
   rails
