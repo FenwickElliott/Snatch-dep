@@ -1,6 +1,5 @@
 <h1>Snatch#snatch</h1>
-<p>Find me in app/views/snatch/snatch.html.erb</p>
 
-<% if @response %>
-  <%= "Logged in as #{@response['uid']}" %>
+<% if @rc %>
+  <%= @rc['album'] %>
 <% end %>
