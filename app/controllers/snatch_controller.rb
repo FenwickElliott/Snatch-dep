@@ -3,9 +3,13 @@ class SnatchController < ApplicationController
   end
 
   def snatch
-    @response = request.env['omniauth.auth']
+
   end
 
   def about
+  end
+
+  def callback
+    @response = request.env['omniauth.auth']
   end
 end

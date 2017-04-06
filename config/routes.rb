@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'about' => 'snatch#about'
   get 'signup' => 'snatch#signup'
 
-  get '/auth/:provider/callback', to: 'snatch#snatch'
+  get '/auth/:provider/callback', to: 'snatch#callback'
 
   root 'snatch#snatch'
 
