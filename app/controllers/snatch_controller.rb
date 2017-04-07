@@ -13,5 +13,13 @@ class SnatchController < ApplicationController
 
   def callback
     @response = request.env['omniauth.auth']
+    @token = @response['credentials']['token']
+
+    @header = {
+      Accept: "application/json",
+      Authorization: "Authorization: Bearer #{@token}"
+    }
+
+    @song = RestClient.get("https://api.spotify.com/v1/me/player/currently-playing", @header)
   end
 end
