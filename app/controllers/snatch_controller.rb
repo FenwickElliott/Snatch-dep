@@ -48,36 +48,39 @@ class SnatchController < ApplicationController
     end
 
     def get_song
-      uri = URI.parse("https://api.spotify.com/v1/me/player/currently-playing")
-      request = Net::HTTP::Get.new(uri)
-      request["Accept"] = "application/json"
-      request["Authorization"] = "Bearer #{@token}"
+      # uri = URI.parse("https://api.spotify.com/v1/me/player/currently-playing")
+      # request = Net::HTTP::Get.new(uri)
+      # request["Accept"] = "application/json"
+      # request["Authorization"] = "Bearer #{@token}"
 
-      req_options = {
-        use_ssl: uri.scheme == "https",
-      }
+      # req_options = {
+      #   use_ssl: uri.scheme == "https",
+      # }
 
-      response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-        http.request(request)
-      end
-      song = JSON.parse response.body
+      # response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      #   http.request(request)
+      # end
+      # song = JSON.parse response.body
+      song = JSON.parse RestClient.get("https://api.spotify.com/v1/me/player/currently-playing", @header)
       @s_uri = song['item']['uri']
     end
 
     def check_for_playlist
-      uri = URI.parse("https://api.spotify.com/v1/me/playlists?limit=50")
-      request = Net::HTTP::Get.new(uri)
-      request["Accept"] = "application/json"
-      request["Authorization"] = "Bearer #{@token}"
+      # uri = URI.parse("https://api.spotify.com/v1/me/playlists?limit=50")
+      # request = Net::HTTP::Get.new(uri)
+      # request["Accept"] = "application/json"
+      # request["Authorization"] = "Bearer #{@token}"
 
-      req_options = {
-        use_ssl: uri.scheme == "https",
-      }
+      # req_options = {
+      #   use_ssl: uri.scheme == "https",
+      # }
 
-      response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-        http.request(request)
-      end
-      list = JSON.parse response.body
+      # response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      #   http.request(request)
+      # end
+      # list = JSON.parse response.body
+
+      list = JSON.parse RestClient.get("https://api.spotify.com/v1/me/playlists?limit=50", @header)
 
       list['items'].each do |x|
           if x['name'] === @p_name
