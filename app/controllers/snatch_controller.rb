@@ -24,10 +24,12 @@ class SnatchController < ApplicationController
 
     @song = RestClient.get("https://api.spotify.com/v1/me/player/currently-playing", @header)
 
-
     @p_name = 'Dummyy'
 
-    def get_me
+    snatch
+  end
+
+      def get_me
       uri = URI.parse("https://api.spotify.com/v1/me")
       request = Net::HTTP::Get.new(uri)
       request["Accept"] = "application/json"
@@ -127,12 +129,12 @@ class SnatchController < ApplicationController
       end
       puts response.code
     end
-
-    get_me
-    get_song
-    check_for_playlist
-    actually_snatch
-
-  end
+    
+    def snatch
+      get_me
+      get_song
+      check_for_playlist
+      actually_snatch
+    end
 end
 
