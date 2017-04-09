@@ -8,7 +8,6 @@ class SnatchController < ApplicationController
   end
 
   def snatch
-    @rc = JSON.parse RestClient.get "https://api.spotify.com/v1/tracks/6NPVjNh8Jhru9xOmyQigds"
   end
 
   def about
@@ -20,7 +19,7 @@ class SnatchController < ApplicationController
 
     @header = {
       Accept: "application/json",
-      Authorization: "Authorization: Bearer #{@token}"
+      Authorization: "Authorization: Bearer #{@response['credentials']['token']}"
     }
 
     @song = RestClient.get("https://api.spotify.com/v1/me/player/currently-playing", @header)
