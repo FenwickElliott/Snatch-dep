@@ -1,10 +1,6 @@
 <h1>Snatch#callback</h1>
 
-<% if @response %>
-  <%#= "Logged in as #{@response['uid']}. " %>
-  <%#= "With token: #{@response['credentials']['token']}" %>
+<p> Snatch sucsessful!</p>
 
-  <%= @song %>
-
-  <%#= @response %>
-<% end %>
+<p> <%= "Logged in as #{@response['uid']}. " %> </p>
+<p> <%= "With token: #{@token}" %> </p>
