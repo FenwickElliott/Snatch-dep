@@ -46,21 +46,25 @@ class SnatchController < ApplicationController
     end
 
     def get_song
-      song = JSON.parse RestClient.get("https://api.spotify.com/v1/me/player/currently-playing", @header)
-      @s_uri = song['item']['uri']
+      if @user_id
+        song = JSON.parse RestClient.get("https://api.spotify.com/v1/me/player/currently-playing", @header)
+        @s_uri = song['item']['uri']
+      end
     end
 
     def check_for_playlist
-      list = JSON.parse RestClient.get("https://api.spotify.com/v1/me/playlists?limit=50", @header)
+      if @user_id
+        list = JSON.parse RestClient.get("https://api.spotify.com/v1/me/playlists?limit=50", @header)
 
-      list['items'].each do |x|
-          if x['name'] === @p_name
-            puts x['name'] << ' Playlist found'
-            @p_id = x['id']
-            return
+        list['items'].each do |x|
+            if x['name'] === @p_name
+              puts x['name'] << ' Playlist found'
+              @p_id = x['id']
+              return
+            end
           end
+          create_playlist
         end
-        create_playlist
     end
 
     def create_playlist
