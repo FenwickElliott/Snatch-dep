@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'snatch/fail'
   get 'snatch/options'
 
+  get 'snatch' => 'snatch#snatch'
   get 'about' => 'snatch#about'
   get 'signup' => 'snatch#signup'
   get 'options' => 'snatch#options'

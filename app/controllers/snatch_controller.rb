@@ -4,13 +4,19 @@ class SnatchController < ApplicationController
   require 'net/http'
   require 'uri'
 
+  # attr_accessor :p_name, :data
+  attr_reader :p_name, :data
+  attr_writer :p_name, :data
+
   def signup
   end
 
   def snatch
+    @data = 999
   end
 
   def about
+    @data ||= @data
   end
 
   def callback
@@ -22,7 +28,7 @@ class SnatchController < ApplicationController
       Authorization: "Authorization: Bearer #{@response['credentials']['token']}"
     }
 
-    @p_name = 'Dummyy'
+    @p_name = 'Fred'
 
     snatch
   end
